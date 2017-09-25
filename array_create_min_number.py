@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding:utf-8 -*- 
+# -*- coding:utf-8 -*-
 # Author: zhaoyilei
 
 '''
@@ -20,6 +20,8 @@ Output：
     2345656
 '''
 import sys
+
+
 def read():
     for line in sys.stdin:
         for s in line:
@@ -43,20 +45,37 @@ def output_min_num(str_list):
     elif length == 1:
         return str_list[0]
 
-    for i in range(length-1):
-            if (min_num > temp) or (min_num < 0):
-                min_num = temp
+    for i in range(length - 1):
+        if (min_num > temp) or (min_num < 0):
+            min_num = temp
     return min_num
 
+
+def comp(a, b, comparing_func=lambda x, y: x < y):
+    if comparing_func(a, b):
+        return a
+    else:
+        return b
+
+
+def quick_sort(arr, left, right, compare_function=lambda x, y: x < y):
+    if left == right:
+        return
+    pivot = arr[left]
+    i = left
+    j = right
+    while i <= j:
+        while arr[i] <= pivot:
+            i+=1
+        while arr[j] >= pivot:
+            j+=1
+            
+        
+
 def main():
-    str_list = [23, 13, 6]
-    # input = read()
-    # num = next(input)
-    print ('total %s nums' % len(str_list))
-    # for i in range(num):
-    #     str_list.append(next(input))
-    result = output_min_num(str_list)
-    print ('min compare is %s' % result)
+    rev_comp = lambda x, y: x > y
+    print(comp(3, 5, rev_comp))
+
 
 if __name__ == '__main__':
     main()
